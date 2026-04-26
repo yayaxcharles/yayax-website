@@ -1,0 +1,1737 @@
+<!DOCTYPE html><html lang="zh-Hant" style="--accent: #0066cc; --bg: #faf7f2; --bg-alt: #f3efe6;"><head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charles Y. C. Yeh — 葉彥呈</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fbfbfd;
+    --bg-alt: #f5f5f7;
+    --bg-dark: #0b0b0d;
+    --ink: #1d1d1f;
+    --ink-2: #2d2d30;
+    --muted: #6e6e73;
+    --muted-2: #86868b;
+    --line: #d2d2d7;
+    --line-soft: #e8e8ed;
+    --accent: #0066cc;
+    --accent-soft: #e6efff;
+    --accent-2: #2997ff;
+    --accent-3: #ff9f0a;
+    --accent-4: #30d158;
+    --accent-5: #bf5af2;
+    --radius: 18px;
+    --radius-lg: 28px;
+    --maxw: 1200px;
+    --font: "Inter","Noto Sans TC",-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+    --display: "Inter","Noto Sans TC",-apple-system,"SF Pro Display","Helvetica Neue",sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  html[lang="zh"]{
+    --font: "Noto Sans TC","Inter",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+    --display: "Noto Sans TC","Inter",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family: var(--font);
+    background: var(--bg); color: var(--ink);
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(251,251,253,0.72);
+    border-bottom:1px solid rgba(0,0,0,0.06);
+    height:52px;
+  }
+  .nav-inner{ max-width: var(--maxw); margin:0 auto; padding:0 22px; height:100%;
+    display:flex;align-items:center;justify-content:space-between;}
+  .brand{ font-weight:600; font-size:14px; letter-spacing:-0.01em }
+  .nav ul{list-style:none;display:flex;gap:28px;align-items:center}
+  .nav ul a{ font-size:12.5px; color: var(--ink-2); opacity:.86; transition: opacity .2s }
+  .nav ul a:hover, .nav ul a.active{opacity:1;font-weight:500}
+  .lang-toggle{
+    display:inline-flex;gap:0;border:1px solid var(--line);border-radius:980px;overflow:hidden;
+  }
+  .lang-toggle button{
+    font:inherit;border:0;background:transparent;cursor:pointer;
+    padding:5px 12px;font-size:11.5px;color:var(--ink-2);
+    transition:all .2s;
+  }
+  .lang-toggle button.on{background:var(--ink);color:#fff}
+
+  section{scroll-margin-top:60px}
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    min-height: 80vh; display:flex; align-items:center;
+    padding: 100px 22px 60px;
+    background: linear-gradient(180deg,#fbfbfd 0%, #f5f5f7 100%);
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 600px 400px at 85% 20%, rgba(0,102,204,0.08), transparent 70%),
+      radial-gradient(ellipse 500px 400px at 10% 80%, rgba(191,90,242,0.06), transparent 70%),
+      radial-gradient(ellipse 400px 300px at 50% 50%, rgba(48,209,88,0.04), transparent 70%);
+    animation: hero-shift 18s ease-in-out infinite alternate;
+  }
+  @keyframes hero-shift {
+    0%   { background-position: 0% 0%, 0% 0%, 0% 0%; }
+    100% { background-position: 6% 4%, -4% 6%, 3% -3%; }
+  }
+  .hero-bg .grid-lines{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  }
+
+  /* Stat count-up placeholder */
+  .stat .n { transition: none }
+
+  /* Skills bar animated fill */
+  .bar i{ width:0 !important; transition: width 1.1s cubic-bezier(.2,.7,.2,1) }
+  .skill-col.in .bar i, .in .bar i{ width: var(--w) !important }
+
+  /* AI Assistant */
+  .ai-fab{
+    position:fixed; bottom:24px; right:24px; z-index:80;
+    width:56px; height:56px; border-radius:50%;
+    background: linear-gradient(135deg, var(--ink) 0%, #2d2d35 100%);
+    color:#fff; border:none; cursor:pointer;
+    box-shadow: 0 12px 30px -6px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) inset;
+    display:flex;align-items:center;justify-content:center;
+    transition: transform .25s ease, box-shadow .25s;
+  }
+  .ai-fab:hover{ transform: translateY(-2px) scale(1.04) }
+  .ai-fab::after{
+    content:""; position:absolute; inset:-4px; border-radius:50%;
+    background: conic-gradient(from 0deg, var(--accent), #bf5af2, #30d158, var(--accent));
+    z-index:-1; opacity:.35; filter:blur(10px);
+    animation: aifab-spin 6s linear infinite;
+  }
+  @keyframes aifab-spin { to { transform: rotate(360deg) } }
+  .ai-fab svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.6}
+
+  .ai-panel{
+    position:fixed; bottom:92px; right:24px; z-index:81;
+    width: min(380px, calc(100vw - 48px));
+    max-height: 560px; display:flex; flex-direction:column;
+    background:#fff; border-radius:20px;
+    border:1px solid var(--line-soft);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.02);
+    transform: translateY(12px) scale(.98); opacity:0; pointer-events:none;
+    transition: transform .25s ease, opacity .25s ease;
+    overflow:hidden;
+  }
+  .ai-panel.on{ transform: translateY(0) scale(1); opacity:1; pointer-events:auto }
+  .ai-panel header{
+    padding:16px 20px; border-bottom:1px solid var(--line-soft);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .ai-panel header .who{display:flex;align-items:center;gap:10px}
+  .ai-panel header .who .avatar{
+    width:32px;height:32px;border-radius:50%;
+    background: linear-gradient(135deg, var(--accent), #bf5af2);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-family:var(--display); font-weight:600; font-size:13px;
+  }
+  .ai-panel header .who .meta .t{font-family:var(--display);font-size:14px;font-weight:600;line-height:1.1}
+  .ai-panel header .who .meta .s{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:2px}
+  .ai-panel header .who .meta .s::before{content:"";width:6px;height:6px;border-radius:50%;background:#30d158;box-shadow:0 0 0 3px rgba(48,209,88,.25)}
+  .ai-panel header button{background:transparent;border:0;color:var(--muted);cursor:pointer;padding:6px;border-radius:8px}
+  .ai-panel header button:hover{background:var(--bg-alt);color:var(--ink)}
+
+  .ai-body{
+    padding:18px 20px; overflow-y:auto; flex:1;
+    display:flex; flex-direction:column; gap:12px; font-size:14px;
+  }
+  .ai-msg{ line-height:1.55; max-width:90%; }
+  .ai-msg.bot{ color:var(--ink); }
+  .ai-msg.bot .bubble{ background:var(--bg-alt); padding:12px 14px; border-radius:14px 14px 14px 4px; }
+  .ai-msg.user{ align-self:flex-end; color:#fff; }
+  .ai-msg.user .bubble{ background:var(--ink); padding:10px 14px; border-radius:14px 14px 4px 14px; }
+  .ai-typing{ display:inline-flex; gap:4px; padding:4px 2px }
+  .ai-typing span{
+    width:6px;height:6px;border-radius:50%; background:var(--muted); opacity:.5;
+    animation: typing 1.2s infinite ease-in-out;
+  }
+  .ai-typing span:nth-child(2){ animation-delay:.15s }
+  .ai-typing span:nth-child(3){ animation-delay:.3s }
+  @keyframes typing {
+    0%,60%,100%{transform:translateY(0);opacity:.35}
+    30%{transform:translateY(-4px);opacity:1}
+  }
+  .ai-sugs{ display:flex; flex-wrap:wrap; gap:6px; padding: 0 20px 12px }
+  .ai-sugs button{
+    font:inherit; font-size:12px; background:var(--bg-alt); color:var(--ink-2);
+    border:1px solid var(--line-soft); padding:6px 11px; border-radius:980px; cursor:pointer;
+    transition: all .18s;
+  }
+  .ai-sugs button:hover{ background:#fff; border-color:var(--accent); color:var(--accent) }
+  .ai-input{
+    padding:12px 14px; border-top:1px solid var(--line-soft);
+    display:flex; gap:8px; align-items:center; background:#fff;
+  }
+  .ai-input input{
+    flex:1; font:inherit; font-size:14px; border:1px solid var(--line-soft);
+    padding:10px 14px; border-radius:980px; outline:none; background:var(--bg-alt);
+  }
+  .ai-input input:focus{ border-color:var(--accent); background:#fff }
+  .ai-input button{
+    background:var(--ink); color:#fff; border:0; cursor:pointer;
+    width:38px; height:38px; border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ai-input button:disabled{ background:var(--line); cursor:not-allowed }
+  .ai-input button svg{width:16px;height:16px;fill:#fff}
+  .hero-grid{ position:relative; z-index:1; max-width: var(--maxw); margin:0 auto; width:100%;
+    display:grid; grid-template-columns: 1.15fr .85fr; gap: 80px; align-items:center; }
+  .eyebrow{
+    font-size:13px; color: var(--accent); font-weight:500; margin-bottom: 20px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{ content:""; width:18px; height:1px; background: var(--accent); }
+  h1.display{
+    font-family: var(--display);
+    font-size: clamp(48px, 6.5vw, 84px); font-weight:600;
+    line-height:1.02; letter-spacing:-0.04em; margin-bottom:20px;
+  }
+  h1.display .sub{
+    display:block; font-size:.32em; font-weight:400; color:var(--muted);
+    margin-top:10px; letter-spacing:0;
+  }
+  .lede{ font-size:19px; color:var(--ink-2); max-width:540px; line-height:1.55; margin-bottom:28px }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px; white-space:nowrap;
+    padding: 11px 22px; border-radius:980px;
+    font-size:14px; font-weight:500; cursor:pointer; transition:all .2s;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:#000}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{background:rgba(0,0,0,0.04)}
+
+  /* Tech stack pills */
+  .tech-row{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:24px;
+    padding-top:24px; border-top:1px solid var(--line-soft);
+    max-width:540px;
+  }
+  .tech-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family: var(--mono); font-size:11.5px; font-weight:500;
+    color: var(--ink-2); background:rgba(255,255,255,0.7);
+    padding:5px 11px 5px 8px; border-radius:980px;
+    border:1px solid var(--line-soft); backdrop-filter: blur(8px);
+    letter-spacing:0.01em;
+  }
+  .tech-pill .tp-dot{
+    width:6px;height:6px;border-radius:50%; flex-shrink:0;
+  }
+  .btn .arrow{transition: transform .2s}
+  .btn:hover .arrow{transform: translateX(3px)}
+
+  .photo-wrap{
+    position:relative; aspect-ratio: 4/5; max-width: 420px; margin-left:auto;
+    border-radius: var(--radius-lg); overflow:hidden; background:#ddd;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.25), 0 10px 30px -10px rgba(0,0,0,0.1);
+  }
+  .photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 20%;
+    filter: saturate(1.02) contrast(1.02);}
+  .photo-tag{
+    position:absolute;left:18px;bottom:18px;
+    background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);
+    padding:8px 14px;border-radius:980px;font-size:11.5px;font-weight:500;
+  }
+  .photo-decor{
+    position:absolute;top:-12px;right:-12px;
+    width:120px;height:120px;border-radius:50%;
+    background: conic-gradient(from 180deg, var(--accent), var(--accent-2), var(--accent-5), var(--accent));
+    opacity:.15; filter:blur(30px); z-index:-1;
+  }
+  .photo-chip{
+    position:absolute; background:#fff; padding:8px 12px;
+    border-radius:12px; box-shadow:0 12px 30px -8px rgba(0,0,0,0.15);
+    font-size:11px; font-weight:500; display:flex; align-items:center; gap:8px;
+  }
+  .photo-chip.c1{ top:20px; left:-24px; }
+  .photo-chip.c2{ bottom:30px; right:-28px; }
+  .photo-chip .dot{width:8px;height:8px;border-radius:50%}
+  .photo-chip .dot.g{background:#30d158;box-shadow:0 0 0 3px rgba(48,209,88,0.2)}
+  .photo-chip .dot.b{background:var(--accent);box-shadow:0 0 0 3px rgba(0,102,204,0.2)}
+
+  /* SECTION */
+  .section{ padding:100px 22px }
+  .section.alt{ background: var(--bg-alt) }
+  .section.dark{ background: var(--bg-dark); color:#f5f5f7 }
+  .section-inner{ max-width:var(--maxw); margin:0 auto }
+  .section-head{ margin-bottom:60px; max-width:820px }
+  .section-tag{ display:none !important }
+  .section-tag-old{
+    font-size:12px; font-weight:500; color:var(--accent);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px;
+    display:inline-flex; align-items:center; gap:12px;
+  }
+  .section-tag::before{ content:""; display:inline-block; width:28px; height:1px; background:currentColor }
+  .section.dark .section-tag{color:#2997ff}
+  h2.title{
+    font-family:var(--display); font-size: clamp(40px,4.8vw,60px);
+    font-weight:600; line-height:1.05; letter-spacing:-0.03em; margin-bottom:20px;
+  }
+  h2.title em{font-style:normal;color:var(--muted)}
+  .section-lede{ font-size:19px; color:var(--muted); line-height:1.55; max-width:680px }
+
+  /* STATS */
+  .stats{
+    display:grid; grid-template-columns: repeat(4,1fr); gap:1px;
+    background: var(--line-soft); border-radius:var(--radius-lg);
+    overflow:hidden; margin-bottom:60px; border:1px solid var(--line-soft);
+  }
+  .stat{ background:#fff; padding: 34px 28px 30px; position:relative; overflow:hidden }
+  .stat .n{
+    font-family:var(--display); font-size:44px; font-weight:600;
+    letter-spacing:-0.035em; line-height:1; margin-bottom:12px;
+    background: linear-gradient(135deg, var(--ink) 0%, var(--accent) 100%);
+    -webkit-background-clip: text; background-clip:text; -webkit-text-fill-color: transparent;
+  }
+  .stat .n .unit{font-size:22px;color:var(--muted);font-weight:500;margin-left:2px; -webkit-text-fill-color: var(--muted);}
+  .stat .lbl{font-size:13.5px; color:var(--muted); line-height:1.45}
+  .stat .micro{
+    position:absolute; top:20px; right:20px;
+    width:40px; height:24px;
+  }
+
+  .two-col{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start}
+  .prose p{font-size:17px;line-height:1.7;color:var(--ink-2);margin-bottom:1.1em}
+  .prose p:last-child{margin-bottom:0}
+
+  /* EXPERTISE CARDS */
+  .expertise{ display:grid; grid-template-columns:1fr 1fr; gap:14px }
+  .exp-card{
+    background:#fff; border:1px solid var(--line-soft); border-radius:var(--radius);
+    padding:22px; transition: all .3s;
+    position:relative; overflow:hidden;
+  }
+  .exp-card:hover{ transform:translateY(-3px); box-shadow:0 20px 40px -20px rgba(0,0,0,0.12) }
+  .exp-card .icon{
+    width:36px; height:36px; border-radius:10px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--accent-soft);
+  }
+  .exp-card .icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.8}
+  .exp-card:nth-child(2) .icon{background:#fff4e6} .exp-card:nth-child(2) .icon svg{stroke:#bf7700}
+  .exp-card:nth-child(3) .icon{background:#e6f7ec} .exp-card:nth-child(3) .icon svg{stroke:#1d7a4a}
+  .exp-card:nth-child(4) .icon{background:#f2e6fd} .exp-card:nth-child(4) .icon svg{stroke:#7d3fc7}
+  .exp-card h4{font-size:15px;font-weight:600;margin-bottom:6px;letter-spacing:-0.01em}
+  .exp-card p{font-size:13px;color:var(--muted);line-height:1.5}
+
+  /* CHART ROW — A visual section with multiple small charts */
+  .chart-row{
+    display:grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 20px;
+    margin-top: 60px;
+  }
+  .chart-card{
+    background:#fff; border:1px solid var(--line-soft); border-radius:var(--radius-lg);
+    padding: 26px 28px;
+  }
+  .chart-card .ck{
+    font-size:11.5px; color:var(--muted); text-transform:uppercase;
+    letter-spacing:0.05em; margin-bottom:6px; font-weight:500;
+  }
+  .chart-card h4{ font-family:var(--display); font-size:20px; font-weight:600; letter-spacing:-0.02em; margin-bottom:18px; }
+  .chart-card .caption{ font-size:12px; color: var(--muted); margin-top:14px }
+  .chart-svg{width:100%; height:auto;}
+
+  /* TIMELINE */
+  .timeline{}
+  .tl-item{
+    display:grid; grid-template-columns: 200px 1fr; gap:40px;
+    padding:34px 0; border-top:1px solid var(--line-soft);
+    position:relative;
+  }
+  .tl-item:last-child{border-bottom:1px solid var(--line-soft)}
+  .tl-item::before{
+    content:""; position:absolute; left:176px; top:40px;
+    width:8px; height:8px; border-radius:50%; background:var(--accent);
+    box-shadow: 0 0 0 4px rgba(0,102,204,0.15);
+  }
+  .tl-when{
+    font-size:13px; color:var(--muted); font-weight:500;
+    padding-top:4px; font-family:var(--mono);
+  }
+  .tl-body h3{font-size:22px;font-weight:600;letter-spacing:-0.02em;margin-bottom:4px}
+  .tl-body .org{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .tl-body p{font-size:15px;line-height:1.65;color:var(--ink-2);max-width:680px}
+  .tl-body ul{list-style:none;margin-top:10px}
+  .tl-body ul li{font-size:14px;color:var(--ink-2);line-height:1.6;padding-left:18px;position:relative}
+  .tl-body ul li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--muted-2)}
+
+  /* PROJECTS */
+  .project-grid{ display:grid; grid-template-columns: repeat(12,1fr); gap:20px }
+  .proj{
+    background:#fff; border:1px solid var(--line-soft);
+    border-radius:var(--radius-lg); padding:36px 36px 32px;
+    overflow:hidden; position:relative;
+    display:flex; flex-direction:column;
+    transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .proj:hover{transform:translateY(-4px)}
+  .proj.big{grid-column:span 7}
+  .proj.small{grid-column:span 5}
+  .proj.wide{grid-column:span 12}
+  .proj.half{grid-column:span 6}
+  .proj-kicker{font-size:12px;font-weight:500;color:var(--accent);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+  .proj h3{ font-family:var(--display); font-size: clamp(22px, 1.9vw, 28px);
+    font-weight:600; letter-spacing:-0.022em; line-height:1.15; margin-bottom:10px; }
+  .proj p{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:18px}
+  .proj .diagram{
+    flex:1; min-height:200px; width:100%;
+    background:var(--bg-alt); border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden; position:relative; margin-bottom:16px;
+  }
+  .proj .meta{ display:flex; gap:22px; flex-wrap:wrap; padding-top:14px; border-top:1px solid var(--line-soft) }
+  .proj .meta b{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-0.02em;display:block;color:var(--ink)}
+  .proj .meta span{font-size:11.5px;color:var(--muted);display:block;margin-top:2px}
+  .proj.dark{background:#0b0b0d;color:#f5f5f7;border-color:transparent}
+  .proj.dark p{color:#a1a1a6}
+  .proj.dark .meta{border-top-color:#2d2d30}
+  .proj.dark .meta b{color:#fff}
+  .proj.dark .meta span{color:#86868b}
+  .proj.dark .proj-kicker{color:var(--accent-2)}
+  .proj.dark .diagram{background:#141418}
+  .proj .diagram-img{ padding:0 }
+  .proj .diagram-img img{ width:100%; height:100%; object-fit:cover; display:block }
+
+  /* SKILLS */
+  .skill-wrap{ display:grid; grid-template-columns: 1fr 1fr; gap:64px 56px; align-items:start }
+  .skill-col{ display:flex; flex-direction:column; gap:64px }
+  .skill-col h4{
+    font-family: var(--display);
+    font-size:28px; color:var(--ink); font-weight:600;
+    letter-spacing:-0.01em; margin-bottom:24px;
+    padding-bottom:18px; border-bottom:1px solid var(--line);
+    display:flex; align-items:baseline; gap:14px;
+  }
+  .skill-col h4 .num{
+    font-family: var(--mono); font-size:12px; color:var(--muted); font-weight:500;
+    letter-spacing:0.05em;
+  }
+  .skill-col ul{list-style:none}
+  .skill-col ul li{
+    font-size:18px; color:var(--ink); padding:14px 0;
+    display:flex; align-items:center; gap:14px;
+    border-bottom:1px solid var(--line-soft);
+    line-height:1.4;
+  }
+  .skill-col ul li:last-child{ border-bottom:none }
+  .skill-col ul li::before{
+    content:""; flex-shrink:0;
+    width:6px; height:6px; border-radius:50%;
+    background: var(--accent);
+    opacity:0.85;
+  }
+  .skill-col:nth-child(2) ul li::before{ background:#bf5af2 }
+
+  .radar-card{
+    background:#fff; border:1px solid var(--line-soft); border-radius: var(--radius-lg);
+    padding: 28px 30px;
+  }
+  .radar-card h4{ font-family:var(--display); font-size:18px; font-weight:600; margin-bottom:8px; letter-spacing:-0.02em }
+  .radar-card .cap{ font-size:12.5px; color:var(--muted); margin-bottom:16px }
+
+  /* PUBLICATIONS */
+  .pub-chart-wrap{
+    display:grid; grid-template-columns: 1fr 1.3fr; gap:40px; margin-bottom:60px;
+    align-items:center;
+  }
+  .pub-chart-wrap .info h4{ font-family:var(--display); font-size:22px; font-weight:600; margin-bottom:12px; letter-spacing:-0.02em }
+  .pub-chart-wrap .info p{ font-size:14.5px; color:var(--muted); line-height:1.6 }
+  .pub-chart-wrap .info .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 14px; border:1px solid var(--line); border-radius:980px;
+    font-size:12px; color:var(--ink-2); margin-right:8px; margin-top:8px;
+  }
+  .pub-chart-wrap .info .pill .sw{ width:8px;height:8px;border-radius:50% }
+
+  .pub-tabs{
+    display:inline-flex; gap:4px; padding:4px; background:var(--bg-alt);
+    border-radius:980px; margin-bottom:40px;
+  }
+  .pub-tabs button{
+    font:inherit; border:0; cursor:pointer; padding:9px 18px;
+    border-radius:980px; font-size:13px; font-weight:500; color:var(--ink-2);
+    background:transparent; transition: all .2s;
+  }
+  .pub-tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+
+  .pub-list{display:flex;flex-direction:column}
+  .pub{
+    display:grid; grid-template-columns:56px 1fr 120px; gap:24px;
+    padding:26px 0; border-top:1px solid var(--line-soft); align-items:start;
+  }
+  .pub:last-child{border-bottom:1px solid var(--line-soft)}
+  .pub-num{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--muted);padding-top:4px}
+  .pub-body{font-size:15.5px;line-height:1.6;color:var(--ink-2)}
+  .pub-body .authors{color:var(--ink)}
+  .pub-body .authors b{font-weight:600;color:var(--accent)}
+  .pub-body .venue{color:var(--muted);display:block;margin-top:4px;font-size:14px}
+  .pub-body .title{font-weight:500;color:var(--ink);display:block;margin:4px 0}
+  .pub-year{
+    font-family:var(--display);font-size:22px;font-weight:500;color:var(--ink);
+    letter-spacing:-0.02em;text-align:right;font-variant-numeric:tabular-nums;
+  }
+  .pub-tag{
+    display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:4px;
+    background:var(--bg-alt);color:var(--muted);margin-left:8px;vertical-align:middle;
+  }
+  .pub-tag.award{background:#fff4d6;color:#9a6b00}
+  .pub-tag.accepted{background:#e6f7ec;color:#1d7a4a}
+  .pub-tag.ssci{background:#e6efff;color:#0066cc}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:40px 0}
+  .contact-card{
+    padding:28px 32px;border:1px solid #2d2d30;border-radius:var(--radius);
+    background:#111114; transition:all .3s; position:relative; overflow:hidden;
+  }
+  .contact-card:hover{border-color:var(--accent-2); background:#15151a}
+  .contact-card .lbl{font-size:11px;color:#86868b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px; font-weight:500}
+  .contact-card .val{font-size:18px;color:#f5f5f7;font-weight:500;letter-spacing:-0.01em;word-break:break-all}
+  .contact-card .val a{color:var(--accent-2)}
+  .contact-card .ico{
+    position:absolute; top:28px; right:28px;
+    width:22px; height:22px; stroke:#86868b; fill:none; stroke-width:1.5;
+  }
+
+  footer{ padding:40px 22px;background:var(--bg-dark);color:var(--muted);font-size:12.5px;border-top:1px solid #2d2d30 }
+  .foot-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  .foot-links a{ color:#a1a1a6; text-decoration:none; transition:color .2s }
+  .foot-links a:hover{ color:#f5f5f7 }
+  .foot-links .foot-sep{ margin:0 10px; color:#48484a }
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(24px);transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* TWEAKS */
+  .tweaks{
+    position:fixed; right:22px; bottom:22px; z-index:200;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+    border:1px solid var(--line); border-radius:16px;
+    padding:18px 20px 16px; width:260px;
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.2); display:none;
+  }
+  .tweaks.on{display:block}
+  .tweaks h5{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:12px;font-weight:600}
+  .tweak-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0}
+  .tweak-row label{font-size:13px;color:var(--ink-2)}
+  .swatches{display:flex;gap:6px}
+  .sw{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .15s}
+  .sw:hover{transform:scale(1.12)}
+  .sw.on{border-color:var(--ink)}
+
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr;gap:50px}
+    .photo-wrap{max-width:320px;margin:0 auto}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .two-col{grid-template-columns:1fr;gap:40px}
+    .chart-row{grid-template-columns:1fr}
+    .skill-wrap{grid-template-columns:1fr; gap:40px}
+    .proj.big,.proj.small,.proj.half{grid-column:span 12}
+    .tl-item{grid-template-columns:1fr;gap:8px}
+    .tl-item::before{display:none}
+    .pub{grid-template-columns:40px 1fr;gap:16px}
+    .pub-year{grid-column:2;text-align:left;font-size:14px;color:var(--muted);margin-top:-6px}
+    .contact-grid{grid-template-columns:1fr}
+    .nav ul{gap:14px}
+    .nav ul a{font-size:12px}
+    .section{padding:80px 22px}
+    .expertise{grid-template-columns:1fr}
+    .pub-chart-wrap{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body data-cc-id="cc-1" style="cursor: crosshair; font-size: 18px;">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Charles Y. C. Yeh</a>
+    <ul>
+      <li><a href="#about" data-i18n="nav.about" class="">關於我</a></li>
+      <li><a href="#experience" data-i18n="nav.experience" class="">經歷</a></li>
+      <li><a href="#projects" data-i18n="nav.projects" class="">專案</a></li>
+      <li><a href="#skills" data-i18n="nav.skills" class="">能力</a></li>
+      <li><a href="#publications" data-i18n="nav.publications" class="">著作</a></li>
+      <li><a href="#contact" data-i18n="nav.contact" class="">聯絡</a></li>
+      <li>
+        <span class="lang-toggle">
+          <button data-lang="en" class="">EN</button>
+          <button data-lang="zh" class="on">中文</button>
+        </span>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section id="top" class="hero">
+  <div class="hero-bg"><div class="grid-lines"></div></div>
+  <div class="hero-grid">
+    <div>
+      <h1 class="display">
+        <span data-i18n="hero.h1">葉彥呈</span>
+        <span class="sub" data-i18n="hero.sub">Charles Y. C. Yeh</span>
+      </h1>
+      <p class="lede" data-i18n="hero.lede">我在台灣建立並帶領數個大型 K–12 數位學習平台，服務超過 30 萬名學生。結合遊戲式設計、學習分析與 AI，讓數學與閱讀更愉快、更適性、更有意義。</p>
+      <div class="cta-row">
+        <a href="#experience" class="btn btn-primary"><span data-i18n="hero.cta1">查看履歷</span> <span class="arrow">→</span></a>
+        <a href="#publications" class="btn btn-ghost" data-i18n="hero.cta2">學術著作</a>
+      </div>
+      <div class="tech-row" aria-label="Tech stack">
+        <span class="tech-pill"><span class="tp-dot" style="background:#74aa9c"></span>Python</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#0066cc"></span>ASP.NET</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#74aa9c"></span>OpenAI</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#bf5af2"></span>RAG</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#ff9f0a"></span>Whisper</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#30d158"></span>Node</span>
+        <span class="tech-pill"><span class="tp-dot" style="background:#0066cc"></span>SQL</span>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="photo-decor"></div>
+      <div class="photo-wrap">
+        <img src="assets/charles.jpg?v=2" alt="Charles Y. C. Yeh">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="about.tag">關於我</span>
+      <h2 class="title" data-i18n="about.title">關於我</h2>
+      <p class="section-lede" data-i18n="about.lede">從碩士時期於 PDA 上開發的算術遊戲，到開始開發數位平台系統，我的工作位於數位學習設計、人機互動與教育數據科學的交會處。</p>
+    </div>
+
+    <div class="stats reveal in">
+      <div class="stat">
+        <svg class="micro" viewBox="0 0 40 24" preserveAspectRatio="none"><polyline points="0,20 8,18 16,14 24,10 32,6 40,4" fill="none" stroke="#0066cc" stroke-width="1.5" stroke-linecap="round"></polyline></svg>
+        <div class="n">2,000<span class="unit">+</span></div>
+        <div class="lbl" data-i18n="stat.schools">我所帶領平台服務的中小學校數</div>
+      </div>
+      <div class="stat">
+        <svg class="micro" viewBox="0 0 40 24" preserveAspectRatio="none"><polyline points="0,22 8,20 16,15 24,10 32,6 40,2" fill="none" stroke="#30d158" stroke-width="1.5" stroke-linecap="round"></polyline></svg>
+        <div class="n">300K<span class="unit">+</span></div>
+        <div class="lbl" data-i18n="stat.students">明日星球平台註冊學生數</div>
+      </div>
+      <div class="stat">
+        <svg class="micro" viewBox="0 0 40 24"><rect x="2" y="12" width="5" height="10" fill="#ff9f0a" rx="1"></rect><rect x="10" y="8" width="5" height="14" fill="#ff9f0a" rx="1"></rect><rect x="18" y="4" width="5" height="18" fill="#ff9f0a" rx="1"></rect><rect x="26" y="10" width="5" height="12" fill="#ff9f0a" rx="1"></rect><rect x="34" y="6" width="5" height="16" fill="#ff9f0a" rx="1"></rect></svg>
+        <div class="n">10<span class="unit">+</span></div>
+        <div class="lbl" data-i18n="stat.grants">執行過的教育部與國科會研究計畫</div>
+      </div>
+      <div class="stat">
+        <svg class="micro" viewBox="0 0 40 24"><circle cx="8" cy="12" r="3" fill="#bf5af2"></circle><circle cx="20" cy="8" r="3" fill="#bf5af2"></circle><circle cx="32" cy="14" r="3" fill="#bf5af2"></circle><path d="M8 12 L20 8 L32 14" stroke="#bf5af2" stroke-width="1" fill="none"></path></svg>
+        <div class="n">50<span class="unit">+</span></div>
+        <div class="lbl" data-i18n="stat.thesis">指導或協助指導的碩士論文</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="prose reveal in">
+        <p data-i18n="about.p1">我是<b>國立中央大學　學習科技研究中心</b>的學者，博士時期於陳德懷講座教授的帶領下，負責多個 K–12 數位學習平台的工程與研究。</p>
+        <p data-i18n="about.p2">我於 2019 年取得中央大學網路學習科技研究所博士學位，博士論文為《數學島：興趣驅動數學學習系統的設計與初步評估》。在攻讀博士前我曾在業界工作，那段經歷讓我在意「上線」與「發表」同等重要。</p>
+        <p data-i18n="about.p3">今日我的工作橫跨：多模態 AI 閱讀同伴架構、全台教師培訓、百萬筆學生互動資料的分析與適性回饋設計。</p>
+      </div>
+
+      <div class="reveal in">
+        <div class="expertise">
+          <div class="exp-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></div>
+            <h4 data-i18n="exp1.h">學習平台工程</h4>
+            <p data-i18n="exp1.p">國家級數位學習環境的全端設計與交付。</p>
+          </div>
+          <div class="exp-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M8 10 L12 14 L16 10"></path></svg></div>
+            <h4 data-i18n="exp2.h">遊戲式學習</h4>
+            <p data-i18n="exp2.p">以 IDC 理論為基礎，設計愉快且興趣驅動的系統。</p>
+          </div>
+          <div class="exp-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 20 V10 M9 20 V6 M14 20 V12 M19 20 V4"></path></svg></div>
+            <h4 data-i18n="exp3.h">學習分析與機器學習</h4>
+            <p data-i18n="exp3.p">精熟度估計、閱讀行為建模、多模態評量。</p>
+          </div>
+          <div class="exp-card">
+            <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"></circle><path d="M6 20c0-3 3-5 6-5s6 2 6 5"></path><path d="M12 2 V4 M3 10 H5 M19 10 H21"></path></svg></div>
+            <h4 data-i18n="exp4.h">AI 教育應用</h4>
+            <p data-i18n="exp4.p">整合 GPT、Whisper 與 RAG，打造閱讀與數學 AI 同伴。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience" class="section alt">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="exp.tag">經歷</span>
+      <h2 class="title" data-i18n="exp.title">經歷</h2>
+      <p class="section-lede" data-i18n="exp.lede">建立系統、進入教學現場研究、指導學生、並迭代下一個版本。</p>
+    </div>
+
+    <div class="timeline" id="timeline-el">
+      <div class="tl-item reveal in">
+        <div class="tl-when">2025 — NOW</div>
+        <div class="tl-body">
+          <h3 data-i18n="expN.role">國科會獨立研究學者</h3>
+          <div class="org" data-i18n="expN.org">國家科學及技術委員會</div>
+          <p data-i18n="expN.desc">獨立研究多模態 AI 與學習數據分析——整合語音、文字與行為訊號，建模並支持大規模 K-12 學習者。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2026 — NOW</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp0.role">通識講師　人工智慧社會影響力評估</h3>
+          <div class="org" data-i18n="exp0.org">國立中央大學　通識教育中心</div>
+          <p data-i18n="exp0.desc">設計並開授給非資訊背景大學生的跨領域 AI 課程，涵蓋機器學習、深度學習、自然語言處理、電腦視覺與 AI 倫理。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2022 — NOW</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp2.role">通識講師　人工智慧導論</h3>
+          <div class="org" data-i18n="exp2.org">台北醫學大學　通識教育中心</div>
+          <p data-i18n="exp2.desc">設計並開授給非資訊背景大學生的跨領域 AI 課程，涵蓋機器學習、深度學習、自然語言處理、電腦視覺與 AI 倫理。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2020 — 2021</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp3.role">講師　數位學習與合作教學</h3>
+          <div class="org" data-i18n="exp3.org">國立中央大學</div>
+          <p data-i18n="exp3.desc">研究所層級課程，帶領在職中小學教師認識數位學習設計、合作學習與數位化課堂評量。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2019 — 2024</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp1.role">博士後研究員</h3>
+          <div class="org" data-i18n="exp1.org">國立中央大學　學習科技研究中心</div>
+          <p data-i18n="exp1.desc">統籌 14 位研究助理與研究生，同時執行多項教育部與國科會計畫。擔任多個服務 2,000 所以上學校平台的主要工程與研究負責人。</p>
+          <ul>
+            <li data-i18n="exp1.b1">計畫主持人：國科會 114-2423-H-008-004「結合 AI 聊書的多模態評量閱讀歷程動態分析」</li>
+            <li data-i18n="exp1.b2">執行教育部「國民中小學明日數學」與「明日閱讀」兩大全國性計畫</li>
+            <li data-i18n="exp1.b3">發表於 RPTEL、JCAL、JCE 等國際期刊</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2011 — 2019</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp4.role">博士　網路學習科技</h3>
+          <div class="org" data-i18n="exp4.org">國立中央大學　指導教授：陳德懷講座教授</div>
+          <p data-i18n="exp4.desc">博士論文：《數學島：興趣驅動數學學習系統的設計與初步評估》。自 2010 年起帶領明日星球學習平台的開發，並於國小現場進行三年的設計導向研究。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2005 — 2007</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp5.role">碩士　網路學習科技</h3>
+          <div class="org" data-i18n="exp5.org">國立中央大學</div>
+          <p data-i18n="exp5.desc">碩士論文：《算術方塊—心算練習個人遊戲的設計》，在 PDA 時代以類俄羅斯方塊機制支援國小低年級的基礎算術練習。</p>
+        </div>
+      </div>
+
+      <div class="tl-item reveal in">
+        <div class="tl-when">2001 — 2005</div>
+        <div class="tl-body">
+          <h3 data-i18n="exp6.role">學士　資訊工程學系</h3>
+          <div class="org" data-i18n="exp6.org">淡江大學</div>
+          <p data-i18n="exp6.desc">奠基於資料結構、演算法、資料庫等核心課程。大學專題以 ASP.NET 與 MS SQL 建立自主學習系統。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="proj.tag">精選專案</span>
+      <h2 class="title" data-i18n="proj.title">精選專案</h2>
+      <p class="section-lede" data-i18n="proj.lede">我所主導或深度參與的代表性專案——從全國閱讀推動到 AI 聊書原型。</p>
+    </div>
+
+    <div class="project-grid">
+
+      <!-- Tomorrow Planet -->
+      <div class="proj big dark reveal in">
+        <div class="proj-kicker" data-i18n="proj1.k">旗艦平台</div>
+        <h3 data-i18n="proj1.h">明日星球</h3>
+        <p data-i18n="proj1.p">K-12 遊戲式數位學習環境，整合「數學島」與「明日書店」，推廣至全台 2,000 所以上學校。自 2010 年起主導開發，並持續演進系統架構、教材管線與資料分析。</p>
+        <div class="diagram">
+          <svg viewBox="0 0 500 260" style="width:100%;height:100%">
+            <defs>
+              <radialGradient id="planet-g2">
+                <stop offset="0%" stop-color="#2997ff" stop-opacity="0.45"></stop>
+                <stop offset="100%" stop-color="#0066cc" stop-opacity="0"></stop>
+              </radialGradient>
+            </defs>
+            <!-- Architecture diagram: modules orbiting a core -->
+            <circle cx="250" cy="130" r="90" fill="url(#planet-g2)"></circle>
+            <circle cx="250" cy="130" r="46" fill="#0066cc"></circle>
+            <text x="250" y="127" text-anchor="middle" fill="#fff" font-family="Inter" font-size="12" font-weight="600">Tomorrow</text>
+            <text x="250" y="142" text-anchor="middle" fill="#fff" font-family="Inter" font-size="12" font-weight="600">Planet</text>
+            <!-- Modules -->
+            <g font-family="Inter" font-size="10" fill="#f5f5f7">
+              <g>
+                <rect x="50" y="30" width="110" height="36" rx="8" fill="#1a1a1f" stroke="#2997ff" stroke-width="1"></rect>
+                <text x="105" y="52" text-anchor="middle" data-i18n="proj1.mod1">Math-Island</text>
+              </g>
+              <g>
+                <rect x="340" y="30" width="110" height="36" rx="8" fill="#1a1a1f" stroke="#2997ff" stroke-width="1"></rect>
+                <text x="395" y="52" text-anchor="middle" data-i18n="proj1.mod2">Tomorrow Bookstore</text>
+              </g>
+              <g>
+                <rect x="20" y="195" width="110" height="36" rx="8" fill="#1a1a1f" stroke="#2997ff" stroke-width="1"></rect>
+                <text x="75" y="217" text-anchor="middle" data-i18n="proj1.mod3">Teacher Dashboard</text>
+              </g>
+              <g>
+                <rect x="180" y="215" width="140" height="36" rx="8" fill="#1a1a1f" stroke="#2997ff" stroke-width="1"></rect>
+                <text x="250" y="237" text-anchor="middle" data-i18n="proj1.mod4">Learning Analytics</text>
+              </g>
+              <g>
+                <rect x="370" y="195" width="110" height="36" rx="8" fill="#1a1a1f" stroke="#2997ff" stroke-width="1"></rect>
+                <text x="425" y="217" text-anchor="middle" data-i18n="proj1.mod5">AI Book Talk</text>
+              </g>
+            </g>
+            <!-- Connectors -->
+            <g stroke="#2997ff" stroke-width="1" opacity="0.5" fill="none">
+              <line x1="160" y1="48" x2="208" y2="108"></line>
+              <line x1="340" y1="48" x2="293" y2="108"></line>
+              <line x1="130" y1="213" x2="210" y2="155"></line>
+              <line x1="250" y1="215" x2="250" y2="176"></line>
+              <line x1="370" y1="213" x2="293" y2="155"></line>
+            </g>
+          </svg>
+        </div>
+        <div class="meta">
+          <div><b>300K+</b><span data-i18n="proj1.m1">學生數</span></div>
+          <div><b>2,000+</b><span data-i18n="proj1.m2">合作學校</span></div>
+          <div><b>K-12</b><span data-i18n="proj1.m3">涵蓋階段</span></div>
+        </div>
+      </div>
+
+      <!-- AI Book Talk -->
+      <div class="proj small reveal in">
+        <div class="proj-kicker" data-i18n="proj2.k">國科會 2025</div>
+        <h3 data-i18n="proj2.h">多模態 AI 聊書</h3>
+        <p data-i18n="proj2.p">整合 OpenAI Whisper、向量檢索與 GPT 系列模型，建構能即時捕捉語音、行為與情意的 AI 閱讀同伴，以行為–情意–認知三面向模型提供適性鷹架。</p>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" style="width:100%;height:100%">
+            <!-- Pipeline diagram -->
+            <g font-family="Inter" font-size="11" fill="#1d1d1f">
+              <!-- Inputs column -->
+              <g>
+                <rect x="20" y="40" width="90" height="34" rx="8" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="65" y="61" text-anchor="middle" data-i18n="proj2.d1">🎙 Audio</text>
+              </g>
+              <g>
+                <rect x="20" y="108" width="90" height="34" rx="8" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="65" y="129" text-anchor="middle" data-i18n="proj2.d2">📖 Behavior</text>
+              </g>
+              <g>
+                <rect x="20" y="176" width="90" height="34" rx="8" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="65" y="197" text-anchor="middle" data-i18n="proj2.d3">😊 Affect</text>
+              </g>
+              <!-- Middle: AI core -->
+              <g>
+                <rect x="160" y="90" width="110" height="80" rx="12" fill="#0066cc"></rect>
+                <text x="215" y="123" text-anchor="middle" fill="#fff" font-weight="600">Whisper</text>
+                <text x="215" y="143" text-anchor="middle" fill="#fff" font-weight="600">+ GPT + RAG</text>
+              </g>
+              <!-- Output -->
+              <g>
+                <rect x="320" y="90" width="80" height="80" rx="12" fill="#bf5af2"></rect>
+                <text x="360" y="125" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj2.d4">Adaptive</text>
+                <text x="360" y="143" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj2.d5">Scaffold</text>
+              </g>
+              <!-- Arrows -->
+              <g stroke="#86868b" stroke-width="1.2" fill="none" marker-end="url(#ar)">
+                <line x1="112" y1="57" x2="158" y2="115"></line>
+                <line x1="112" y1="125" x2="158" y2="130"></line>
+                <line x1="112" y1="193" x2="158" y2="145"></line>
+                <line x1="272" y1="130" x2="318" y2="130"></line>
+              </g>
+              <defs>
+                <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                  <path d="M0,0 L10,5 L0,10 z" fill="#86868b"></path>
+                </marker>
+              </defs>
+            </g>
+          </svg>
+        </div>
+        <div class="meta">
+          <div><b>Whisper</b><span data-i18n="proj2.m1">語音辨識</span></div>
+          <div><b>GPT + RAG</b><span data-i18n="proj2.m2">對話引擎</span></div>
+        </div>
+      </div>
+
+      <!-- Math-Island -->
+      <div class="proj half reveal in">
+        <div class="proj-kicker" data-i18n="proj3.k">明日數學</div>
+        <h3 data-i18n="proj3.h">明日數學</h3>
+        <p data-i18n="proj3.p">「明日數學」將數學概念以互動式遊戲形式呈現，並以課程地圖的方式引導學生進行自我進度學習。學生透過挑戰數學任務闖關，依自己的能力，規劃與經營自己的學習，進而提高學生的信心與興趣。同時，教師可以透過學習歷程清楚掌握每位學生的學習狀況與進度，給予學生不同的建議與幫助，解決學生的學習困難。 <a href="https://www.cot.org.tw/soft/index.php" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">cot.org.tw</a></p>
+        <div class="diagram diagram-img">
+          <img src="assets/math-island.png" alt="Tomorrow Math — Math-Island interactive map">
+        </div>
+      </div>
+
+      <!-- Mastery Estimation -->
+      <div class="proj half reveal in">
+        <div class="proj-kicker" data-i18n="proj4.k">機器學習</div>
+        <h3 data-i18n="proj4.h">學生精熟度估計</h3>
+        <p data-i18n="proj4.p">以學生在線上學習系統中的回饋請求與解題時間預測其數學精熟度。ICCE 2021，與 Kannan 等人合著。</p>
+        <div class="diagram">
+          <svg viewBox="0 0 400 220" style="width:100%;height:100%">
+            <!-- Features → Model → Output -->
+            <g font-family="Inter" font-size="10" fill="#1d1d1f">
+              <g>
+                <rect x="20" y="30" width="100" height="28" rx="6" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="70" y="48" text-anchor="middle" data-i18n="proj4.f1">Solving time</text>
+              </g>
+              <g>
+                <rect x="20" y="96" width="100" height="28" rx="6" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="70" y="114" text-anchor="middle" data-i18n="proj4.f2">Feedback req.</text>
+              </g>
+              <g>
+                <rect x="20" y="162" width="100" height="28" rx="6" fill="#fff" stroke="#d2d2d7"></rect>
+                <text x="70" y="180" text-anchor="middle" data-i18n="proj4.f3">Accuracy</text>
+              </g>
+              <!-- Neural net nodes -->
+              <g fill="#bf5af2">
+                <circle cx="190" cy="60" r="7"></circle><circle cx="190" cy="110" r="7"></circle><circle cx="190" cy="160" r="7"></circle>
+                <circle cx="250" cy="80" r="7"></circle><circle cx="250" cy="140" r="7"></circle>
+              </g>
+              <g stroke="#bf5af2" stroke-width="0.8" opacity="0.4" fill="none">
+                <line x1="190" y1="60" x2="250" y2="80"></line><line x1="190" y1="60" x2="250" y2="140"></line>
+                <line x1="190" y1="110" x2="250" y2="80"></line><line x1="190" y1="110" x2="250" y2="140"></line>
+                <line x1="190" y1="160" x2="250" y2="80"></line><line x1="190" y1="160" x2="250" y2="140"></line>
+              </g>
+              <g stroke="#86868b" stroke-width="1" opacity="0.5">
+                <line x1="120" y1="44" x2="184" y2="60"></line>
+                <line x1="120" y1="110" x2="184" y2="110"></line>
+                <line x1="120" y1="176" x2="184" y2="160"></line>
+              </g>
+              <!-- Output gauge -->
+              <g>
+                <rect x="310" y="80" width="70" height="60" rx="8" fill="#0066cc"></rect>
+                <text x="345" y="108" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">87%</text>
+                <text x="345" y="124" text-anchor="middle" fill="#fff" font-size="9" data-i18n="proj4.f4">Mastery</text>
+              </g>
+              <g stroke="#86868b" stroke-width="1" opacity="0.5">
+                <line x1="257" y1="110" x2="308" y2="110"></line>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- MSSR -->
+      <div class="proj wide reveal in">
+        <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:start">
+          <div>
+            <div class="proj-kicker" data-i18n="proj5.k">全國型計畫</div>
+            <h3 data-i18n="proj5.h">明日閱讀與明日數學</h3>
+            <p data-i18n="proj5.p">協助執行教育部明日閱讀計畫以及明日數學計畫，並執行多項國科會研究計畫。</p>
+            <div class="meta">
+              <div><b>4</b><span data-i18n="proj5.m1">四區教師工作坊</span></div>
+              <div><b>1000+</b><span data-i18n="proj5.m1b">Teachers trained</span></div>
+              <div><b>40+</b><span data-i18n="proj5.m2">英文試點學校</span></div>
+            </div>
+          </div>
+          <div class="diagram" style="min-height:220px">
+            <svg viewBox="0 0 500 220" style="width:100%;height:100%">
+              <!-- Taiwan + program flow -->
+              <g font-family="Inter" font-size="10" fill="#1d1d1f">
+                <!-- Phase boxes horizontal -->
+                <g>
+                  <rect x="20" y="40" width="110" height="46" rx="10" fill="#0066cc"></rect>
+                  <text x="75" y="60" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj5.p1">MSSR 1.0</text>
+                  <text x="75" y="76" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8" data-i18n="proj5.p1s">Reading habit</text>
+                </g>
+                <g>
+                  <rect x="150" y="40" width="110" height="46" rx="10" fill="#30d158"></rect>
+                  <text x="205" y="60" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj5.p2">MSSR 2.0</text>
+                  <text x="205" y="76" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8" data-i18n="proj5.p2s">Book Talk</text>
+                </g>
+                <g>
+                  <rect x="280" y="40" width="110" height="46" rx="10" fill="#ff9f0a"></rect>
+                  <text x="335" y="60" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj5.p3">AI Book Talk</text>
+                  <text x="335" y="76" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8" data-i18n="proj5.p3s">Multimodal</text>
+                </g>
+                <g>
+                  <rect x="410" y="40" width="80" height="46" rx="10" fill="#bf5af2"></rect>
+                  <text x="450" y="60" text-anchor="middle" fill="#fff" font-weight="600" data-i18n="proj5.p4">IDLA</text>
+                  <text x="450" y="76" text-anchor="middle" fill="#fff" font-size="9" opacity="0.8" data-i18n="proj5.p4s">English</text>
+                </g>
+                <!-- Arrows -->
+                <g stroke="#86868b" stroke-width="1.5" fill="#86868b">
+                  <path d="M130 63 L148 63" stroke-width="1.5"></path><polygon points="148,60 154,63 148,66"></polygon>
+                  <path d="M260 63 L278 63"></path><polygon points="278,60 284,63 278,66"></polygon>
+                  <path d="M390 63 L408 63"></path><polygon points="408,60 414,63 408,66"></polygon>
+                </g>
+                <!-- Region chips -->
+                <g>
+                  <text x="30" y="130" font-size="10" font-weight="600" fill="#6e6e73" data-i18n="proj5.reg">Teacher workshops:</text>
+                  <g>
+                    <rect x="30" y="142" width="70" height="28" rx="14" fill="#f5f5f7" stroke="#d2d2d7"></rect>
+                    <text x="65" y="160" text-anchor="middle" data-i18n="proj5.r1">North</text>
+                  </g>
+                  <g>
+                    <rect x="110" y="142" width="70" height="28" rx="14" fill="#f5f5f7" stroke="#d2d2d7"></rect>
+                    <text x="145" y="160" text-anchor="middle" data-i18n="proj5.r2">Central</text>
+                  </g>
+                  <g>
+                    <rect x="190" y="142" width="70" height="28" rx="14" fill="#f5f5f7" stroke="#d2d2d7"></rect>
+                    <text x="225" y="160" text-anchor="middle" data-i18n="proj5.r3">South</text>
+                  </g>
+                  <g>
+                    <rect x="270" y="142" width="70" height="28" rx="14" fill="#f5f5f7" stroke="#d2d2d7"></rect>
+                    <text x="305" y="160" text-anchor="middle" data-i18n="proj5.r4">East</text>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section alt">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="skills.tag">能力</span>
+      <h2 class="title" data-i18n="skills.title">能力</h2>
+      <p class="section-lede" data-i18n="skills.lede">全端工程、AI 與資料、教育設計——整合於一套實踐之中。</p>
+    </div>
+
+    <div class="skill-wrap">
+      <div class="skill-col reveal in">
+        <div>
+          <h4><span data-i18n="sk.eng">工程</span><span class="num">01</span></h4>
+          <ul>
+            <li><span data-i18n="sk.e1">全端網頁平台</span></li>
+            <li><span data-i18n="sk.e2">ASP.NET · Node · SQL</span></li>
+            <li><span data-i18n="sk.e3">遊戲式系統</span></li>
+            <li><span data-i18n="sk.e4">資料管線</span></li>
+            <li><span data-i18n="sk.e5">API 整合</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4><span data-i18n="sk.ai">AI 與資料</span><span class="num">02</span></h4>
+          <ul>
+            <li><span data-i18n="sk.a1">機器學習</span></li>
+            <li><span data-i18n="sk.a2">GPT 與 Whisper API</span></li>
+            <li><span data-i18n="sk.a3">RAG 與向量檢索</span></li>
+            <li><span data-i18n="sk.a4">多模態分析</span></li>
+            <li><span data-i18n="sk.a5">學生建模</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="skill-col reveal in">
+        <div>
+          <h4><span data-i18n="sk.rs">研究</span><span class="num">03</span></h4>
+          <ul>
+            <li><span data-i18n="sk.r1">設計導向研究</span></li>
+            <li><span data-i18n="sk.r2">混合方法評估</span></li>
+            <li><span data-i18n="sk.r3">統計（T 檢定、MANCOVA）</span></li>
+            <li><span data-i18n="sk.r4">IRB 與現場研究</span></li>
+            <li><span data-i18n="sk.r5">學術發表</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4><span data-i18n="sk.ld">領導</span><span class="num">04</span></h4>
+          <ul>
+            <li><span data-i18n="sk.l1">領導學術研究</span></li>
+            <li><span data-i18n="sk.l2">協助執行國科會與教育部 10+ 計畫</span></li>
+            <li><span data-i18n="sk.l3">教師專業發展</span></li>
+            <li><span data-i18n="sk.l4">計畫協調</span></li>
+            <li><span data-i18n="sk.l5">產學合作</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="section">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="pub.tag">學術著作</span>
+      <h2 class="title" data-i18n="pub.title">學術著作</h2>
+      <p class="section-lede" data-i18n="pub.lede">橫跨數學學習、閱讀、AI 同伴與遊戲式學習設計的期刊與研討會論文。</p>
+    </div>
+
+    <div class="pub-tabs reveal in">
+      <button class="on" data-filter="journal" data-i18n="pub.t1">期刊論文</button>
+      <button data-filter="conf1" data-i18n="pub.t2" class="">會議論文・第一作者</button>
+      <button data-filter="conf2" data-i18n="pub.t3" class="">會議論文・共同作者</button>
+    </div>
+
+    <div class="pub-list" id="pubs"><div class="pub">
+        <div class="pub-num">01</div>
+        <div class="pub-body">
+          <span class="authors">Mustika, M., <b>Yeh, C. Y. C.</b>, Cheng, H. N. H., Liao, C. C. Y., &amp; Chan, T.-W.</span>
+          <span class="title">The effect of mind map as a prewriting activity in third-grade elementary students' descriptive narrative creative writing with a writing e-portfolio<span class="pub-tag accepted">Accepted</span></span>
+          <span class="venue">Journal of Computer Assisted Learning</span>
+        </div>
+        <div class="pub-year">2025</div>
+      </div><div class="pub">
+        <div class="pub-num">02</div>
+        <div class="pub-body">
+          <span class="authors">Chan, T. W., Looi, C. K., Wong, S. L., …, &amp; <b>Yeh, Y. C.</b></span>
+          <span class="title">Global Harwell: Should it be our shared global educational goal?</span>
+          <span class="venue">International Society of the Learning Sciences, pp. 2327–2335</span>
+        </div>
+        <div class="pub-year">2025</div>
+      </div><div class="pub">
+        <div class="pub-num">03</div>
+        <div class="pub-body">
+          <span class="authors">Chou, C. Y., Chan, T. W., …, <b>Yeh, C. Y. C.</b>, Hung, H. C., &amp; Cheng, H.</span>
+          <span class="title">Defining AI companions: A research agenda — from artificial companions for learning to general artificial companions for global Harwell</span>
+          <span class="venue">Research and Practice in Technology Enhanced Learning, 20, 032</span>
+        </div>
+        <div class="pub-year">2024</div>
+      </div><div class="pub">
+        <div class="pub-num">04</div>
+        <div class="pub-body">
+          <span class="authors">Lin, Y. F., Yang, E. F. Y., Wu, J. S., <b>Yeh, C. Y. C.</b>, &amp; Chan, T. W.</span>
+          <span class="title">Enhancing students' authentic mathematical problem-solving skills and confidence through error analysis of GPT-4 solutions</span>
+          <span class="venue">Research and Practice in Technology Enhanced Learning</span>
+        </div>
+        <div class="pub-year">2024</div>
+      </div><div class="pub">
+        <div class="pub-num">05</div>
+        <div class="pub-body">
+          <span class="authors">Mustika, M., Nataraj, K., <b>Yeh, C. Y. C.</b>, &amp; Chan, T. W.</span>
+          <span class="title">Exploring the relationship between habitual voluminous book reading and writing performance among third-grade students</span>
+          <span class="venue">Research and Practice in Technology Enhanced Learning</span>
+        </div>
+        <div class="pub-year">2024</div>
+      </div><div class="pub">
+        <div class="pub-num">06</div>
+        <div class="pub-body">
+          <span class="authors">Looi, C. K., Wong, S. L., …, <b>Y. C. Yeh</b>, …, Cheng, H., &amp; Liao, C. C.</span>
+          <span class="title">Interest-Driven Creator Theory: case study of embodiment in an experimental school in Taiwan</span>
+          <span class="venue">Research and Practice in Technology Enhanced Learning</span>
+        </div>
+        <div class="pub-year">2023</div>
+      </div><div class="pub">
+        <div class="pub-num">07</div>
+        <div class="pub-body">
+          <span class="authors">Huang, M. C. L., Chou, C. Y., Wu, Y. T., Shih, J. L., <b>Yeh, C. Y. C.</b>, Lao, A. C. C., Fong, H., Lin, Y. F., &amp; Chan, T. W.</span>
+          <span class="title">Interest-driven video creation for learning mathematics</span>
+          <span class="venue">Journal of Computers in Education, 7(3), 395–433</span>
+        </div>
+        <div class="pub-year">2020</div>
+      </div><div class="pub">
+        <div class="pub-num">08</div>
+        <div class="pub-body">
+          <span class="authors"><b>Yeh, C. Y. C.</b>, Cheng, H. N. H., Chen, Z. H., Liao, C. C. Y., &amp; Chan, T. W.</span>
+          <span class="title">Enhancing achievement and interest in mathematics learning through Math-Island</span>
+          <span class="venue">Research and Practice in Technology Enhanced Learning</span>
+        </div>
+        <div class="pub-year">2019</div>
+      </div><div class="pub">
+        <div class="pub-num">09</div>
+        <div class="pub-body">
+          <span class="authors">Chen, Z. H., Liao, C. C., Cheng, H. N., <b>Yeh, C. Y.</b>, &amp; Chan, T. W.</span>
+          <span class="title">Influence of game quests on pupils' enjoyment and goal-pursuing in math learning<span class="pub-tag ssci">SSCI</span></span>
+          <span class="venue">Journal of Educational Technology &amp; Society, 15(2), 317–327</span>
+        </div>
+        <div class="pub-year">2012</div>
+      </div></div>
+  </div>
+</section>
+
+<section id="contact" class="section dark">
+  <div class="section-inner">
+    <div class="section-head reveal in">
+      <span class="section-tag" data-i18n="ct.tag">聯絡</span>
+      <h2 class="title" style="color:#f5f5f7" data-i18n="ct.title">聯絡</h2>
+      <p class="section-lede" style="color:#86868b" data-i18n="ct.lede">無論是研究合作、平台諮詢，或是教學邀約——都歡迎與我聯絡。</p>
+    </div>
+
+    <div class="contact-grid reveal in">
+      <div class="contact-card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7a2 2 0 012-2h14a2 2 0 012 2"></path></svg>
+        <div class="lbl" data-i18n="ct.email">電子郵件</div>
+        <div class="val"><a href="mailto:charles@cl.ncu.edu.tw">charles@cl.ncu.edu.tw</a></div>
+      </div>
+      <div class="contact-card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 2 L22 7 L12 12 L2 7 Z"></path><path d="M6 10v5c0 2 3 4 6 4s6-2 6-4v-5"></path></svg>
+        <div class="lbl" data-i18n="ct.aff">所屬單位</div>
+        <div class="val" data-i18n="ct.affv">國立中央大學<br><span style="color:#86868b;font-size:14px;font-weight:400">學習科技研究中心</span></div>
+      </div>
+      <div class="contact-card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg>
+        <div class="lbl" data-i18n="ct.office">辦公室</div>
+        <div class="val">03-4227151 ext. 35406</div>
+      </div>
+      <div class="contact-card">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M12 21s-8-7-8-13a8 8 0 0116 0c0 6-8 13-8 13z"></path><circle cx="12" cy="8" r="3"></circle></svg>
+        <div class="lbl" data-i18n="ct.loc">地點</div>
+        <div class="val" data-i18n="ct.locv">台灣・桃園</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div data-i18n="foot.c">© 2026 葉彥呈（Charles Y. C. Yeh）．保留所有權利。</div>
+    <div class="foot-links">
+      <a href="mailto:charles@cl.ncu.edu.tw">charles@cl.ncu.edu.tw</a>
+      <span class="foot-sep">·</span>
+      <span data-i18n="foot.loc">台灣・桃園</span>
+    </div>
+  </div>
+</footer>
+
+<div class="tweaks on" id="tweaks">
+  <h5>Tweaks</h5>
+  <div class="tweak-row">
+    <label>Accent</label>
+    <div class="swatches">
+      <div class="sw on" data-accent="#0066cc" style="background:#0066cc"></div>
+      <div class="sw" data-accent="#bf4800" style="background:#bf4800"></div>
+      <div class="sw" data-accent="#1d7a4a" style="background:#1d7a4a"></div>
+      <div class="sw" data-accent="#5e5ce6" style="background:#5e5ce6"></div>
+      <div class="sw" data-accent="#1d1d1f" style="background:#1d1d1f"></div>
+    </div>
+  </div>
+  <div class="tweak-row">
+    <label>Theme</label>
+    <div style="display:flex;gap:6px">
+      <div class="sw on" data-theme="light" style="background:#fbfbfd;border-color:var(--line)"></div>
+      <div class="sw" data-theme="warm" style="background:#faf7f2;border-color:var(--line)"></div>
+      <div class="sw" data-theme="cool" style="background:#f3f6fa;border-color:var(--line)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA -->
+<script id="pub-data" type="application/json">
+{
+  "journal": [
+    {"authors":"Mustika, M., <b>Yeh, C. Y. C.</b>, Cheng, H. N. H., Liao, C. C. Y., &amp; Chan, T.-W.","year":"2025","title":"The effect of mind map as a prewriting activity in third-grade elementary students' descriptive narrative creative writing with a writing e-portfolio","venue":"Journal of Computer Assisted Learning","tag":"Accepted","tagClass":"accepted"},
+    {"authors":"Chan, T. W., Looi, C. K., Wong, S. L., …, &amp; <b>Yeh, Y. C.</b>","year":"2025","title":"Global Harwell: Should it be our shared global educational goal?","venue":"International Society of the Learning Sciences, pp. 2327–2335"},
+    {"authors":"Chou, C. Y., Chan, T. W., …, <b>Yeh, C. Y. C.</b>, Hung, H. C., &amp; Cheng, H.","year":"2024","title":"Defining AI companions: A research agenda — from artificial companions for learning to general artificial companions for global Harwell","venue":"Research and Practice in Technology Enhanced Learning, 20, 032"},
+    {"authors":"Lin, Y. F., Yang, E. F. Y., Wu, J. S., <b>Yeh, C. Y. C.</b>, &amp; Chan, T. W.","year":"2024","title":"Enhancing students' authentic mathematical problem-solving skills and confidence through error analysis of GPT-4 solutions","venue":"Research and Practice in Technology Enhanced Learning"},
+    {"authors":"Mustika, M., Nataraj, K., <b>Yeh, C. Y. C.</b>, &amp; Chan, T. W.","year":"2024","title":"Exploring the relationship between habitual voluminous book reading and writing performance among third-grade students","venue":"Research and Practice in Technology Enhanced Learning"},
+    {"authors":"Looi, C. K., Wong, S. L., …, <b>Y. C. Yeh</b>, …, Cheng, H., &amp; Liao, C. C.","year":"2023","title":"Interest-Driven Creator Theory: case study of embodiment in an experimental school in Taiwan","venue":"Research and Practice in Technology Enhanced Learning"},
+    {"authors":"Huang, M. C. L., Chou, C. Y., Wu, Y. T., Shih, J. L., <b>Yeh, C. Y. C.</b>, Lao, A. C. C., Fong, H., Lin, Y. F., &amp; Chan, T. W.","year":"2020","title":"Interest-driven video creation for learning mathematics","venue":"Journal of Computers in Education, 7(3), 395–433"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Cheng, H. N. H., Chen, Z. H., Liao, C. C. Y., &amp; Chan, T. W.","year":"2019","title":"Enhancing achievement and interest in mathematics learning through Math-Island","venue":"Research and Practice in Technology Enhanced Learning"},
+    {"authors":"Chen, Z. H., Liao, C. C., Cheng, H. N., <b>Yeh, C. Y.</b>, &amp; Chan, T. W.","year":"2012","title":"Influence of game quests on pupils' enjoyment and goal-pursuing in math learning","venue":"Journal of Educational Technology &amp; Society, 15(2), 317–327","tag":"SSCI","tagClass":"ssci"}
+  ],
+  "conf1": [
+    {"authors":"<b>葉彥呈</b>、陳德懷","year":"2025","title":"從小學到國中：延伸數位學習平台以支援國中生數學學習","venue":"第 29 屆全球華人計算機教育應用大會，無錫"},
+    {"authors":"<b>葉彥呈</b>、許喬珉、陳德懷","year":"2024","title":"設計閱讀成就目標系統輔助學生閱讀","venue":"第 28 屆全球華人計算機教育應用大會，重慶"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Yang, C. Y. J., &amp; Chan, T. W.","year":"2023","title":"Design and implement an achievement system for enhancing students' interest and self-efficacy in mathematics","venue":"14th International Congress on Advanced Applied Informatics, Japan"},
+    {"authors":"<b>葉彥呈</b>、楊馥祤、陳德懷","year":"2020","title":"建立線上數學寫作系統與同儕互評機制輔助學生數學學習","venue":"第 24 屆全球華人教育計算機應用大會，蘭州：西北師範大學"},
+    {"authors":"<b>葉彥呈</b>、羅怡帆、陳德懷","year":"2019","title":"設計線上歷程視覺化系統機制以增進學生學習動機","venue":"第 23 屆全球華人教育計算機應用大會，武漢：華中師範大學"},
+    {"authors":"<b>葉彥呈</b>、謝蕙如、陳德懷","year":"2017","title":"增進「數學島」系統回饋與歷程呈現輔助學生數學學習","venue":"第 21 屆全球華人計算機教育應用大會，北京師範大學"},
+    {"authors":"<b>葉彥呈</b>、楊馥祤、廖長彥、羅怡帆、陳德懷","year":"2016","title":"數學島：建立自主經營學習遊戲輔助後段學生數學學習","venue":"第 20 屆全球華人計算機教育應用大會，香港","tag":"Best Technical Design Paper","tagClass":"award"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Cheng, H. N. H., Cheng, Z. H., &amp; Chan, T. W.","year":"2014","title":"Math Island: Designing a management game of primary mathematics for facilitating student learning","venue":"Workshop Proc. of ICCE 2014, Nara, Japan"},
+    {"authors":"<b>葉彥呈</b>、吳卉雯、鄭年亨、陳德懷","year":"2014","title":"數學島：設計國小知識地圖遊戲支援學生學習","venue":"第 18 屆全球華人計算機教育應用大會，上海"},
+    {"authors":"<b>葉彥呈</b>、陳蓮儀、鄭年亨、陳斐卿、陳德懷","year":"2012","title":"支援國小數學文字題之擬題活動設計與評估","venue":"第 16 屆全球華人計算機教育應用大會 (GCCCE 2012)，台灣墾丁"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Chen, Z. H., Chen, W. E., &amp; Chan, T. W.","year":"2012","title":"My-Pet-My-Quest: Developing a quest-driven learning system to facilitate students learning","venue":"4th IEEE Int. Conf. on Digital Game and Intelligent Toy Enhanced Learning, Japan"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Chen, Z. H., Liao, C. C. Y., &amp; Chan, T. W.","year":"2011","title":"My-Pet-My-Quest: Using authoring tool in open content environment to extend learning quests","venue":"19th Int. Conf. on Computer Supported Collaborative Learning, Hong Kong"},
+    {"authors":"<b>Yeh, C. Y. C.</b>, Chen, Z. H., Liao, C. C. Y., &amp; Chan, T. W.","year":"2011","title":"My-Pet-My-Quest: Using authoring tool in open content environment to extend learning quests","venue":"International Conference on Joyful E-Learning (pp. 255–260), Taiwan"},
+    {"authors":"<b>葉彥呈</b>、陳蓮儀、鄭年亨、陳斐卿、陳德懷","year":"2011","title":"轉化動物同伴平台至學習網絡社群模式以延伸學習者動機及學習成效","venue":"第 15 屆全球華人計算機教育應用大會 (GCCCE 2011)，杭州"},
+    {"authors":"<b>葉彥呈</b>、陳志洪、廖長彥、陳德懷","year":"2010","title":"支援動物同伴平台之教學者任務編輯工具設計與實作","venue":"2010 數碼遊戲化學習國際學術會議，佛山"},
+    {"authors":"<b>葉彥呈</b>、陳志洪、廖長彥、陳德懷","year":"2010","title":"支援加法心算練習的 PDA 魔術方塊遊戲設計與評估","venue":"第 14 屆全球華人計算機教育應用大會 (GCCCE 2010)，新加坡"},
+    {"authors":"Yeh, Y. C., Cheng, H. N. H., Liao, C. C. Y., Chen, Z. H., &amp; Chan, T. W.","year":"2010","title":"A Tetris game to support students' mental computation: Design and evaluation","venue":"ICCE 2010, Malaysia"}
+  ],
+  "conf2": [
+    {"authors":"Cheng, H. N. H., &amp; <b>Yeh, C. C. Y.</b>","year":"2025","title":"Fostering AI understanding and perception through SDG-oriented hands-on learning for non-CS students","venue":"IIAI AAI 2025, Kitakyushu, Japan","tag":"Corresponding Author"},
+    {"authors":"郭銍恩、廖長彥、<b>葉彥呈</b>、陳德懷","year":"2025","title":"AI 閱讀遊戲：結合 AI 打造多角色線上互動平台提升閱讀動機","venue":"第 29 屆全球華人計算機教育應用大會，無錫"},
+    {"authors":"Tsai, Y.-C., Yang, H. T., Liao, C.-Y., <b>Yeh, Y. C.</b>, &amp; Chan, T. W.","year":"2024","title":"Investigating the role of AI book talk companion in enhancing student performance: A pilot study on self-efficacy","venue":"ICCE 2024, Quezon City, Philippines"},
+    {"authors":"周得揚、<b>葉彥呈</b>","year":"2024","title":"信能數學：教師學習分析儀表板","venue":"第 28 屆全球華人計算機教育應用大會，重慶"},
+    {"authors":"周得揚、<b>葉彥呈</b>、涂弘旻","year":"2023","title":"國中線上數位信趣數學平台之設計與評估","venue":"第 27 屆全球華人計算機教育應用大會，北京"},
+    {"authors":"李應儒、<b>葉彥呈</b>、陳德懷","year":"2023","title":"信趣數學：透過合作解題與教中學影片創製增進學生數學自信心與興趣","venue":"第 27 屆全球華人計算機教育應用大會，北京"},
+    {"authors":"Kannan N., <b>Charles Y. C. Yeh</b>, Chih-Yueh Chou, &amp; Tak-Wai Chan","year":"2021","title":"A machine learning approach to estimating student mastery by predicting feedback request and solving time in online learning systems","venue":"29th International Conference on Computers in Education"},
+    {"authors":"王姝涵、<b>葉彥呈</b>、陳德懷","year":"2021","title":"探討國小數學教中學影片錄製活動對學生學習動機與興趣之影響","venue":"GCCCE 2021 Chinese Paper Proceedings"},
+    {"authors":"陳冠廷、許育茹、<b>葉彥呈</b>、陳德懷","year":"2020","title":"數學猜擬題活動對於學習動機之影響","venue":"第 24 屆全球華人計算機教育應用大會"},
+    {"authors":"賴瑞霖、洪暉鈞、簡子超、<b>葉彥呈</b>、陳德懷","year":"2020","title":"應用教育資料探勘技術於分析「明日書店」平台之學生閱讀行為","venue":"第 24 屆全球華人計算機教育應用大會"},
+    {"authors":"李應儒、<b>葉彥呈</b>、陳德懷","year":"2022","title":"探討學生自我進度學習與差異化教學之影響——以國小數學為例","venue":"第 26 屆全球華人計算機教育應用大會 (GCCCE 2022)，臺灣"},
+    {"authors":"楊承祐、<b>葉彥呈</b>、陳德懷","year":"2022","title":"數位學習系統教材與紙本教材之分類整理：以國小數學為例","venue":"第 26 屆全球華人計算機教育應用大會 (GCCCE 2022)，臺灣"},
+    {"authors":"劉宸穎、<b>葉彥呈</b>、陳德懷","year":"2020","title":"設計與實作明日寫系統以提升學習者之興趣能力","venue":"第 24 屆全球華人計算機教育應用大會"},
+    {"authors":"邱歆雅、<b>葉彥呈</b>、陳德懷","year":"2018","title":"設計與實作數位策略遊戲以提升學習者數學加法進位概念","venue":"第 22 屆全球華人計算機教育應用大會，廣州：華南師範大學"},
+    {"authors":"許育茹、<b>葉彥呈</b>、陳德懷","year":"2018","title":"數位遊戲式學習結合翻牌遊戲輔助學前兒童學習英語字彙之研究","venue":"第 22 屆全球華人計算機教育應用大會，廣州：華南師範大學"},
+    {"authors":"謝惠存、<b>葉彥呈</b>、陳德懷","year":"2018","title":"設計與實作數位英語學習遊戲以促進小學低年級學生英語單字能力","venue":"第 22 屆全球華人計算機教育應用大會，廣州：華南師範大學"},
+    {"authors":"郭雨鑫、黃安邦、<b>葉彥呈</b>、陳德懷","year":"2018","title":"透過語音辨識系統結合遊戲式學習輔助學習者英文發音","venue":"第 22 屆全球華人計算機教育應用大會，廣州：華南師範大學"},
+    {"authors":"陳宣銘、<b>葉彥呈</b>、陳德懷","year":"2016","title":"設計與實作競爭式數學學習系統以提升學生學習動機與成效","venue":"第 20 屆全球華人計算機教育應用大會，香港"},
+    {"authors":"羅怡帆、鄭年亨、<b>葉彥呈</b>、張智婷、陳德懷","year":"2014","title":"知識地圖融入遊戲式數位學習環境對國小生學習數學之影響","venue":"第 18 屆全球華人計算機教育應用大會，上海"},
+    {"authors":"張智婷、鄭年亨、<b>葉彥呈</b>、羅怡帆、陳德懷","year":"2014","title":"國小數學數位教材之設計原則與經驗","venue":"第 18 屆全球華人計算機教育應用大會，上海"},
+    {"authors":"吳卉雯、鄭年亨、<b>葉彥呈</b>、陳志洪、陳德懷","year":"2013","title":"數學島：國小數學知識地圖之遊戲設計","venue":"第 17 屆全球華人計算機教育應用大會，北京"},
+    {"authors":"鄭年亨、陳蓮儀、<b>葉彥呈</b>、吳睦傑、陳斐卿、陳德懷","year":"2011","title":"數學擬題系統之設計：從心理擁有感的觀點","venue":"第二十七屆科學教育研討會，台灣高雄"},
+    {"authors":"Liao, C. C. Y., Chen, Z. H., <b>Yeh, C. Y. C.</b>, &amp; Chan, T. W.","year":"2011","title":"Exploring the potential of game-based network homework to support sustainable learning between home and school","venue":"International Conference on Joyful E-Learning (pp. 31–36), Taiwan"},
+    {"authors":"Liao, C. C. Y., Wu, M., Cheng, H. N. H., <b>Yeh, C. Y. C.</b>, Chen, Z. H., &amp; Chan, T. W.","year":"2011","title":"Influence of game-based network homework on cognitive effectiveness and affective experience in math learning","venue":"15th GCCCE, Hangzhou, China"},
+    {"authors":"Liao, C. C. Y., Wu, M., Cheng, H. N. H., <b>Yeh, C. Y. C.</b>, Chen, Z. H., &amp; Chan, T. W.","year":"2011","title":"The long-term influence of game-based network homework on cognitive effectiveness and affective experience in math learning","venue":"19th International Conference on Computers in Education, Chiang Mai, Thailand"},
+    {"authors":"Cheng, H. N. H., Liao, C. C. Y., <b>Yeh, C. Y. C.</b>, Wu, H. W., &amp; Chan, T. W.","year":"2013","title":"Investigating students' sequence of mathematical topics in an educational game with a curriculum map","venue":"Workshop Proc. of ICCE 2013, Bali, Indonesia"}
+  ]
+}
+</script>
+
+<script id="i18n-data" type="application/json">
+{
+  "en": {},
+  "zh": {
+    "nav.about":"關於我","nav.experience":"經歷","nav.projects":"專案","nav.skills":"能力","nav.publications":"著作","nav.contact":"聯絡",
+    "hero.eyebrow":"國立中央大學　博士後研究員",
+    "hero.h1":"葉彥呈",
+    "hero.sub":"Charles Y. C. Yeh",
+    "hero.lede":"我在台灣建立並帶領數個大型 K–12 數位學習平台，服務超過 30 萬名學生。結合遊戲式設計、學習分析與 AI，讓數學與閱讀更愉快、更適性、更有意義。",
+    "hero.cta1":"查看履歷","hero.cta2":"學術著作",
+    "hero.loc":"台灣・桃園",
+    "hero.chip1":"歡迎合作邀約","hero.chip2":"博士．網路學習科技 · 2019",
+
+    "about.tag":"關於我","about.title":"關於我",
+    "about.lede":"從碩士時期於 PDA 上開發的算術遊戲，到開始開發數位平台系統，我的工作位於數位學習設計、人機互動與教育數據科學的交會處。",
+    "about.p1":"我是<b>國立中央大學　學習科技研究中心</b>的學者，博士時期於陳德懷講座教授的帶領下，負責多個 K–12 數位學習平台的工程與研究。",
+    "about.p2":"我於 2019 年取得中央大學網路學習科技研究所博士學位，博士論文為《數學島：興趣驅動數學學習系統的設計與初步評估》。在攻讀博士前我曾在業界工作，那段經歷讓我在意「上線」與「發表」同等重要。",
+    "about.p3":"今日我的工作橫跨：多模態 AI 閱讀同伴架構、全台教師培訓、百萬筆學生互動資料的分析與適性回饋設計。",
+
+    "stat.schools":"我所帶領平台服務的中小學校數","stat.students":"明日星球平台註冊學生數","stat.grants":"執行過的教育部與國科會研究計畫","stat.thesis":"指導或協助指導的碩士論文",
+
+    "exp1.h":"學習平台工程","exp1.p":"國家級數位學習環境的全端設計與交付。",
+    "exp2.h":"遊戲式學習","exp2.p":"以 IDC 理論為基礎，設計愉快且興趣驅動的系統。",
+    "exp3.h":"學習分析與機器學習","exp3.p":"精熟度估計、閱讀行為建模、多模態評量。",
+    "exp4.h":"AI 教育應用","exp4.p":"整合 GPT、Whisper 與 RAG，打造閱讀與數學 AI 同伴。",
+
+    "chart1.k":"研究產出　2010–2025","chart1.h":"十五年間的論文與計畫",
+    "chart1.leg1":"已發表論文","chart1.leg2":"執行中計畫",
+    "chart2.k":"研究主題","chart2.h":"領域佔比","chart2.center":"年研究",
+    "chart2.l1":"數學學習","chart2.l2":"閱讀與寫作","chart2.l3":"AI 與機器學習","chart2.l4":"遊戲式學習",
+    "chart3.k":"全台佈點","chart3.h":"合作學校分佈","chart3.cap":"平台佈點涵蓋北、中、南、東台灣主要地區。",
+    "map.north":"台北／北區","map.central":"中部","map.taoyuan":"桃園","map.south":"南部",
+
+    "exp.tag":"經歷","exp.title":"經歷",
+    "exp.lede":"建立系統、進入教學現場研究、指導學生、並迭代下一個版本。",
+    "expN.role":"國科會獨立研究學者","expN.org":"國家科學及技術委員會",
+    "expN.desc":"獨立研究多模態 AI 與學習數據分析——整合語音、文字與行為訊號，建模並支持大規模 K-12 學習者。",
+    "exp0.role":"通識講師　人工智慧社會影響力評估","exp0.org":"國立中央大學　通識教育中心",
+    "exp0.desc":"設計並開授給非資訊背景大學生的跨領域 AI 課程，涵蓋機器學習、深度學習、自然語言處理、電腦視覺與 AI 倫理。",
+    "exp1.role":"博士後研究員","exp1.org":"國立中央大學　學習科技研究中心",
+    "exp1.desc":"統籌 14 位研究助理與研究生，同時執行多項教育部與國科會計畫。擔任多個服務 2,000 所以上學校平台的主要工程與研究負責人。",
+    "exp1.b1":"計畫主持人：國科會 114-2423-H-008-004「結合 AI 聊書的多模態評量閱讀歷程動態分析」",
+    "exp1.b2":"執行教育部「國民中小學明日數學」與「明日閱讀」兩大全國性計畫",
+    "exp1.b3":"發表於 RPTEL、JCAL、JCE 等國際期刊",
+    "exp2.role":"通識講師　人工智慧導論","exp2.org":"台北醫學大學　通識教育中心",
+    "exp2.desc":"設計並開授給非資訊背景大學生的跨領域 AI 課程，涵蓋機器學習、深度學習、自然語言處理、電腦視覺與 AI 倫理。",
+    "exp3.role":"講師　數位學習與合作教學","exp3.org":"國立中央大學",
+    "exp3.desc":"研究所層級課程，帶領在職中小學教師認識數位學習設計、合作學習與數位化課堂評量。",
+    "exp4.role":"博士　網路學習科技","exp4.org":"國立中央大學　指導教授：陳德懷講座教授",
+    "exp4.desc":"博士論文：《數學島：興趣驅動數學學習系統的設計與初步評估》。自 2010 年起帶領明日星球學習平台的開發，並於國小現場進行三年的設計導向研究。",
+    "exp5.role":"碩士　網路學習科技","exp5.org":"國立中央大學",
+    "exp5.desc":"碩士論文：《算術方塊—心算練習個人遊戲的設計》，在 PDA 時代以類俄羅斯方塊機制支援國小低年級的基礎算術練習。",
+    "exp6.role":"學士　資訊工程學系","exp6.org":"淡江大學",
+    "exp6.desc":"奠基於資料結構、演算法、資料庫等核心課程。大學專題以 ASP.NET 與 MS SQL 建立自主學習系統。",
+
+    "proj.tag":"精選專案","proj.title":"精選專案",
+    "proj.lede":"我所主導或深度參與的代表性專案——從全國閱讀推動到 AI 聊書原型。",
+    "proj1.k":"旗艦平台","proj1.h":"明日星球",
+    "proj1.p":"K-12 遊戲式數位學習環境，整合「數學島」與「明日書店」，推廣至全台 2,000 所以上學校。自 2010 年起主導開發，並持續演進系統架構、教材管線與資料分析。",
+    "proj1.m1":"學生數","proj1.m2":"合作學校","proj1.m3":"涵蓋階段",
+    "proj2.k":"國科會 2025","proj2.h":"多模態 AI 聊書",
+    "proj2.p":"整合 OpenAI Whisper、向量檢索與 GPT 系列模型，建構能即時捕捉語音、行為與情意的 AI 閱讀同伴，以行為–情意–認知三面向模型提供適性鷹架。",
+    "proj2.m1":"語音辨識","proj2.m2":"對話引擎",
+    "proj3.k":"明日數學","proj3.h":"明日數學",
+    "proj3.p":"「明日數學」將數學概念以互動式遊戲形式呈現，並以課程地圖的方式引導學生進行自我進度學習。學生透過挑戰數學任務闖關，依自己的能力，規劃與經營自己的學習，進而提高學生的信心與興趣。同時，教師可以透過學習歷程清楚掌握每位學生的學習狀況與進度，給予學生不同的建議與幫助，解決學生的學習困難。 <a href=\"https://www.cot.org.tw/soft/index.php\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--accent);text-decoration:underline\">cot.org.tw</a>",
+    "proj4.k":"機器學習","proj4.h":"學生精熟度估計",
+    "proj4.p":"以學生在線上學習系統中的回饋請求與解題時間預測其數學精熟度。ICCE 2021，與 Kannan 等人合著。",
+    "proj5.k":"全國型計畫","proj5.h":"明日閱讀與明日數學",
+    "proj5.p":"協助執行教育部明日閱讀計畫以及明日數學計畫，並執行多項國科會研究計畫。",
+    "proj5.m1":"四區教師工作坊","proj5.m2":"英文試點學校","proj5.m3":"教育部國教署",
+    "mssr.b1":"明日書店","mssr.b3":"AI 聊書同伴","mssr.b4":"英文 IDLA 模式","mssr.b5":"家校閱讀串連",
+
+    "skills.tag":"能力","skills.title":"能力",
+    "skills.lede":"全端工程、AI 與資料、教育設計——整合於一套實踐之中。",
+    "sk.eng":"工程","sk.e1":"全端網頁平台","sk.e2":"ASP.NET · Node · SQL","sk.e3":"遊戲式系統","sk.e4":"資料管線","sk.e5":"API 整合",
+    "sk.ai":"AI 與資料","sk.a1":"機器學習","sk.a2":"GPT 與 Whisper API","sk.a3":"RAG 與向量檢索","sk.a4":"多模態分析","sk.a5":"學生建模",
+    "sk.rs":"研究","sk.r1":"設計導向研究","sk.r2":"混合方法評估","sk.r3":"統計（T 檢定、MANCOVA）","sk.r4":"IRB 與現場研究","sk.r5":"學術發表",
+    "sk.ld":"領導","sk.l1":"領導學術研究","sk.l2":"協助執行國科會與教育部 10+ 計畫","sk.l3":"教師專業發展","sk.l4":"計畫協調","sk.l5":"產學合作",
+    "radar.h":"能力雷達","radar.c":"自我評估——工程、研究、教學、領導、AI 五大向度。",
+    "radar.l1":"工程","radar.l2":"研究","radar.l3":"教學","radar.l4":"領導","radar.l5":"AI／ML",
+
+    "pub.tag":"學術著作","pub.title":"學術著作",
+    "pub.lede":"橫跨數學學習、閱讀、AI 同伴與遊戲式學習設計的期刊與研討會論文。",
+    "pub.chart.h":"超過 40 篇同儕審查論文","pub.chart.p":"十餘年來穩定產出，近年更朝向 AI 加值的閱讀與多模態學習分析發展。",
+    "pub.chart.l1":"期刊","pub.chart.l2":"會議（第一作者）","pub.chart.l3":"會議（共同作者）",
+    "pub.t1":"期刊論文","pub.t2":"會議論文・第一作者","pub.t3":"會議論文・共同作者",
+
+    "ct.tag":"聯絡","ct.title":"聯絡",
+    "ct.lede":"無論是研究合作、平台諮詢，或是教學邀約——都歡迎與我聯絡。",
+    "ct.email":"電子郵件","ct.aff":"所屬單位","ct.affv":"國立中央大學<br/><span style='color:#86868b;font-size:14px;font-weight:400'>學習科技研究中心</span>",
+    "ct.office":"辦公室","ct.loc":"地點","ct.locv":"台灣・桃園",
+
+    "ai.t":"葉彥呈的 AI 小助理","ai.s":"線上·由 Claude 驅動",
+
+    "foot.c":"© 2026 葉彥呈（Charles Y. C. Yeh）．保留所有權利。",
+    "foot.loc":"台灣・桃園"
+  }
+}
+</script>
+
+<script>
+  /* Charts removed per design revision */
+
+  /* ===== PUBLICATIONS ===== */
+  const pubData = JSON.parse(document.getElementById('pub-data').textContent);
+  const pubsEl = document.getElementById('pubs');
+  function renderPubs(key){
+    const list = pubData[key];
+    pubsEl.innerHTML = list.map((p, i) => {
+      const tag = p.tag ? `<span class="pub-tag ${p.tagClass||''}">${p.tag}</span>` : '';
+      return `<div class="pub">
+        <div class="pub-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="pub-body">
+          <span class="authors">${p.authors}</span>
+          <span class="title">${p.title}${tag}</span>
+          <span class="venue">${p.venue}</span>
+        </div>
+        <div class="pub-year">${p.year}</div>
+      </div>`;
+    }).join('');
+  }
+  renderPubs('journal');
+  document.querySelectorAll('.pub-tabs button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.pub-tabs button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      renderPubs(b.dataset.filter);
+      observeReveals();
+    });
+  });
+
+  /* ===== I18N ===== */
+  const i18n = JSON.parse(document.getElementById('i18n-data').textContent);
+  const originalEN = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { originalEN[el.dataset.i18n] = el.innerHTML; });
+  function setLang(lang){
+    const dict = lang === 'zh' ? i18n.zh : null;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.dataset.i18n;
+      if (dict && dict[k] != null) el.innerHTML = dict[k];
+      else if (originalEN[k] != null) el.innerHTML = originalEN[k];
+    });
+    document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-Hant' : 'en');
+    // Update AI input placeholder
+    const aiInput = document.getElementById('ai-input');
+    if (aiInput){
+      aiInput.placeholder = lang === 'zh'
+        ? '請問葉老師的研究、專案或合作…'
+        : 'Ask about my research, projects, or how to collaborate…';
+    }
+    document.querySelectorAll('.lang-toggle button').forEach(b => {
+      b.classList.toggle('on', b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('lang', lang); } catch(e){}
+  }
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.lang));
+  });
+  const savedLang = (() => { try { return localStorage.getItem('lang'); } catch(e){ return null; }})();
+  if (savedLang === 'zh') setLang('zh');
+
+  /* ===== REVEAL ===== */
+  let io;
+  function observeReveals(){
+    if (io) io.disconnect();
+    io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  }
+  observeReveals();
+
+  /* ===== ACTIVE NAV ===== */
+  const secs = [...document.querySelectorAll('section[id]')];
+  const navLinks = [...document.querySelectorAll('.nav ul a[href^="#"]')];
+  const navIo = new IntersectionObserver(ents => {
+    ents.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  secs.forEach(s => navIo.observe(s));
+
+  /* ===== SKILL BARS removed (now styled lists) ===== */
+
+  /* ===== COUNT-UP on stat numbers ===== */
+  function parseStat(text){
+    // "2,000+" / "300K+" / "10+" / "50+"
+    const m = text.match(/([\d,\.]+)\s*([KM]?)/i);
+    if (!m) return null;
+    const raw = parseFloat(m[1].replace(/,/g, ''));
+    const unit = (m[2]||'').toUpperCase();
+    const mult = unit === 'K' ? 1000 : unit === 'M' ? 1000000 : 1;
+    return { value: raw * mult, unit };
+  }
+  function fmtStat(v, unit){
+    if (unit === 'K') return (v/1000).toFixed(0) + 'K';
+    if (unit === 'M') return (v/1000000).toFixed(0) + 'M';
+    if (v >= 1000) return v.toLocaleString();
+    return Math.round(v).toString();
+  }
+  const statEls = document.querySelectorAll('.stat .n');
+  const statIo = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      statIo.unobserve(el);
+      // Find the main text node (before the unit span)
+      const unitSpan = el.querySelector('.unit');
+      const unitText = unitSpan ? unitSpan.textContent : '';
+      const mainText = el.childNodes[0] ? el.childNodes[0].textContent.trim() : el.textContent.trim();
+      const parsed = parseStat(mainText);
+      if (!parsed) return;
+      const target = parsed.value;
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now){
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const v = target * eased;
+        if (el.childNodes[0]) el.childNodes[0].textContent = fmtStat(v, parsed.unit);
+        if (t < 1) requestAnimationFrame(tick);
+        else if (el.childNodes[0]) el.childNodes[0].textContent = mainText; // snap back to exact source formatting
+      }
+      // reset to 0 then animate
+      if (el.childNodes[0]) el.childNodes[0].textContent = fmtStat(0, parsed.unit);
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.4 });
+  statEls.forEach(el => statIo.observe(el));
+
+  /* ===== AI ASSISTANT ===== */
+  document.addEventListener('DOMContentLoaded', function(){
+    const fab = document.getElementById('ai-fab');
+    const panel = document.getElementById('ai-panel');
+    const closeBtn = document.getElementById('ai-close');
+    const body = document.getElementById('ai-body');
+    const input = document.getElementById('ai-input');
+    const send = document.getElementById('ai-send');
+    const sugs = document.getElementById('ai-sugs');
+    if (!fab) return;
+
+    const lang = () => document.documentElement.lang === 'zh-Hant' ? 'zh' : 'en';
+
+    const SUGS = {
+      en: [
+        "What's Charles's research focus?",
+        "Tell me about Tomorrow Planet",
+        "How is AI used in your work?",
+        "Best way to get in touch?"
+      ],
+      zh: [
+        "葉老師的研究方向？",
+        "介紹一下明日星球",
+        "你在研究中如何使用 AI？",
+        "如何聯絡？"
+      ]
+    };
+    const GREETINGS = {
+      en: "Hi! I'm a research assistant trained on Charles's CV and publications. Ask me about his work, projects, or collaboration.",
+      zh: "嗨！我是以葉彥呈老師的履歷與著作訓練的研究小助理。歡迎詢問他的研究、專案或合作事宜。"
+    };
+
+    const CONTEXT = `You are a helpful research assistant for Charles Y. C. Yeh (葉彥呈), a postdoctoral researcher at the Research Center for Science and Technology for Learning, National Central University (NCU), Taiwan. His Ph.D. is in Network Learning Technology (NCU, 2019) under Chair Professor Tak-Wai Chan.
+
+He leads engineering and research for multiple K-12 digital learning platforms used in 2,000+ schools with 300K+ students. Core projects:
+- Tomorrow Planet (flagship platform since 2010): game-based learning environment integrating Math-Island (math) and Tomorrow Bookstore (reading).
+- Tomorrow Math / Math-Island: interactive math games with curriculum maps for self-paced learning.
+- Multimodal AI Book Talk (NSTC 2025): AI reading companion combining Whisper speech ASR, GPT dialogue with RAG, and multimodal behavior + affect analysis.
+- Mastery Estimation (ICCE 2021): ML approach predicting student math mastery from solving time and feedback requests.
+
+Skills: Full-stack web (ASP.NET, Node, SQL), game-based systems, data pipelines; ML, GPT & Whisper APIs, RAG & vector retrieval, multimodal analytics, student modeling; design-based research, mixed-methods evaluation, IRB field studies; leading academic research, 10+ grants executed, teacher PD, program coordination.
+
+40+ peer-reviewed publications in JCAL, RPTEL, JCE, ICCE, GCCCE, IIAI. Best Technical Design Paper at GCCCE 2016. Email charles@cl.ncu.edu.tw. Office: 03-4227151 ext. 35406.
+
+Answer in the user's language (Traditional Chinese or English). Be concise (2-4 sentences). Stay focused on Charles's work, research, and collaboration. If the question is unrelated, politely redirect.`;
+
+    function renderSugs(){
+      const lst = SUGS[lang()];
+      sugs.innerHTML = lst.map(q => `<button type="button">${q}</button>`).join('');
+      sugs.querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', () => { input.value = b.textContent; submit(); });
+      });
+    }
+    function addMsg(role, text){
+      const div = document.createElement('div');
+      div.className = 'ai-msg ' + role;
+      div.innerHTML = `<div class="bubble">${text}</div>`;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+      return div;
+    }
+    function addTyping(){
+      const div = document.createElement('div');
+      div.className = 'ai-msg bot';
+      div.innerHTML = `<div class="bubble"><div class="ai-typing"><span></span><span></span><span></span></div></div>`;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+      return div;
+    }
+
+    let greeted = false;
+    function openPanel(){
+      panel.classList.add('on');
+      if (!greeted){
+        addMsg('bot', GREETINGS[lang()]);
+        renderSugs();
+        greeted = true;
+      }
+      setTimeout(() => input.focus(), 180);
+    }
+    function closePanel(){ panel.classList.remove('on'); }
+
+    fab.addEventListener('click', () => {
+      if (panel.classList.contains('on')) closePanel();
+      else openPanel();
+    });
+    closeBtn.addEventListener('click', closePanel);
+
+    async function submit(){
+      const q = input.value.trim();
+      if (!q) return;
+      input.value = '';
+      send.disabled = true;
+      addMsg('user', q);
+      const typingEl = addTyping();
+      try {
+        const reply = await window.claude.complete(`${CONTEXT}\n\nUser: ${q}\n\nReply:`);
+        typingEl.remove();
+        addMsg('bot', (reply || '').trim() || (lang()==='zh'?'抱歉，請再試一次。':'Sorry, please try again.'));
+      } catch(err){
+        typingEl.remove();
+        addMsg('bot', lang()==='zh' ? '連線有點不穩，請稍後再試。' : 'Connection hiccup — please try again.');
+      } finally {
+        send.disabled = false;
+        input.focus();
+      }
+    }
+    send.addEventListener('click', submit);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+
+    // Re-render suggestions when language changes
+    const origSetLang = window.setLang;
+    // Listen for clicks on lang toggle and re-render
+    document.querySelectorAll('.lang-toggle button').forEach(b => {
+      b.addEventListener('click', () => setTimeout(renderSugs, 50));
+    });
+  });
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#0066cc",
+    "theme": "warm"
+  }/*EDITMODE-END*/;
+  const current = {...TWEAK_DEFAULTS};
+  const tweaksEl = document.getElementById('tweaks');
+
+  function applyAccent(c){ document.documentElement.style.setProperty('--accent', c); }
+  function applyTheme(t){
+    const map = { light:{bg:'#fbfbfd',alt:'#f5f5f7'}, warm:{bg:'#faf7f2',alt:'#f3efe6'}, cool:{bg:'#f3f6fa',alt:'#e7edf4'} };
+    const c = map[t] || map.light;
+    document.documentElement.style.setProperty('--bg', c.bg);
+    document.documentElement.style.setProperty('--bg-alt', c.alt);
+  }
+  applyAccent(current.accent); applyTheme(current.theme);
+
+  window.addEventListener('message', e => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') tweaksEl.classList.add('on');
+    if (d.type === '__deactivate_edit_mode') tweaksEl.classList.remove('on');
+  });
+  try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch(e){}
+
+  tweaksEl.querySelectorAll('[data-accent]').forEach(el => {
+    el.addEventListener('click', () => {
+      tweaksEl.querySelectorAll('[data-accent]').forEach(x => x.classList.remove('on'));
+      el.classList.add('on');
+      current.accent = el.dataset.accent; applyAccent(current.accent);
+      try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{accent: current.accent}}, '*'); } catch(e){}
+    });
+  });
+  tweaksEl.querySelectorAll('[data-theme]').forEach(el => {
+    el.addEventListener('click', () => {
+      tweaksEl.querySelectorAll('[data-theme]').forEach(x => x.classList.remove('on'));
+      el.classList.add('on');
+      current.theme = el.dataset.theme; applyTheme(current.theme);
+      try { window.parent.postMessage({type:'__edit_mode_set_keys', edits:{theme: current.theme}}, '*'); } catch(e){}
+    });
+  });
+</script>
+
+<!-- AI Assistant -->
+<button class="ai-fab" id="ai-fab" aria-label="Open AI assistant">
+  <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 019 9v1a5 5 0 01-5 5h-1l-3 3v-3H9a5 5 0 01-5-5v-1a9 9 0 018-9z" stroke-linejoin="round"></path><circle cx="9" cy="12" r="1" fill="currentColor"></circle><circle cx="15" cy="12" r="1" fill="currentColor"></circle></svg>
+</button>
+<div class="ai-panel" id="ai-panel" role="dialog" aria-label="AI assistant">
+  <header>
+    <div class="who">
+      <div class="avatar">CY</div>
+      <div class="meta">
+        <div class="t" data-i18n="ai.t">Charles's AI Assistant</div>
+        <div class="s" data-i18n="ai.s">Online · Powered by Claude</div>
+      </div>
+    </div>
+    <button id="ai-close" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"></path></svg>
+    </button>
+  </header>
+  <div class="ai-body" id="ai-body"></div>
+  <div class="ai-sugs" id="ai-sugs"></div>
+  <div class="ai-input">
+    <input id="ai-input" placeholder="Ask about my research, projects, or how to collaborate…">
+    <button id="ai-send" aria-label="Send">
+      <svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z" fill="currentColor"></path></svg>
+    </button>
+  </div>
+</div>
+
+
+
+</body></html>
